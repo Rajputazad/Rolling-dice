@@ -1,4 +1,4 @@
-import 'package:dice/home.dart';
+import 'package:dice/option.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,11 +16,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         appBarTheme: const AppBarTheme(
-          color:
-              Color.fromARGB(255, 167, 14, 4), // Set the desired app bar color
+          color: Color.fromARGB(255, 0, 0, 0), // Set the desired app bar color
         ),
       ),
-      home: const HomeScreen(),
+      home: const Option(),
     );
   }
 }

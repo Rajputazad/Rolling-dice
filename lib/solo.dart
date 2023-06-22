@@ -3,16 +3,14 @@ import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class Solo extends StatefulWidget {
+  const Solo({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<Solo> createState() => _SoloState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
-  int leftdice = 1;
+class _SoloState extends State<Solo> with SingleTickerProviderStateMixin {
   int rightdice = 2;
   late AnimationController _controller;
   late CurvedAnimation animation;
@@ -25,9 +23,10 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   void dispose() {
-    super.dispose();
     // audioPlayer.dispose();
     _controller.dispose();
+    animation.dispose();
+    super.dispose();
   }
 
   animate() {
@@ -42,9 +41,6 @@ class _HomeScreenState extends State<HomeScreen>
     animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         setState(() {
-          var random1 = Random();
-          var left = random1.nextInt(6) + 1;
-          leftdice = left;
           var random2 = Random();
           var right = random2.nextInt(6) + 1;
           rightdice = right;
@@ -82,41 +78,7 @@ class _HomeScreenState extends State<HomeScreen>
                       child: GestureDetector(
                     onDoubleTap: roll,
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-
-                      // child: ClipRRect(
-                      //   borderRadius: BorderRadius.circular(20.0),
-                      //   child: Image.asset(
-                      //     'assets/images/dice-six-faces-$leftdice.png',
-                      //     // width: 200 - animation.value * 200,
-                      //     height: 200 - animation.value * 200,
-                      //     fit: BoxFit.fitWidth,
-                      //   ),
-                      // ),
-                      // child: Container(
-                      //   height: 120,
-                      //   width: 120,
-                      //   decoration: BoxDecoration(
-                      //     border: Border.all(
-                      //       //<-- SEE HERE
-                      //       width: 5,
-                      //     ),
-                      //     borderRadius: BorderRadius.circular(20),
-                      //   ),
-                      // child: Image.asset(
-                      //     "assets/images/dice-six-faces-$leftdice.png"),
-                      child: Image(
-                        height: 200 - (animation.value) * 200,
-                        image: AssetImage(
-                            'assets/images/dice-six-faces-$leftdice.png'),
-                      ),
-                    ),
-                  )),
-                  Expanded(
-                      child: GestureDetector(
-                    onDoubleTap: roll,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(20.0),
                       // child: ClipRRect(
                       //   borderRadius: BorderRadius.circular(20.0),
                       //   child: Image.asset(
